@@ -25,9 +25,12 @@ if __name__ == "__main__":
 	sensor_server.daemon = True
 	sensor_server.start()
 
+
+	# Save RealtimeAQI data with SQLite
 	try :
 		db_conn = sqlite3.connect("realaqi.db")
 		db_cur = db_conn.cursor()
+		# Set Cursor
 	except Exception as e:
 		print "Error : {0}".format(repr(e))
 
