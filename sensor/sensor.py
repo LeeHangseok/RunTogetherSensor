@@ -6,6 +6,8 @@ from threading import Lock
 from time import time, sleep
 import random
 
+
+#make SensorThread
 class SensorServer(Thread):
         def __init__(self, db_file = "realaqi.db"):
                 Thread.__init__(self)
@@ -13,7 +15,7 @@ class SensorServer(Thread):
                 # assign GPIO pins that control mux selector pins
                 # (If you're using a GPIO)
 
-
+				# Set Mux pin
                 self.mux = [easyGpio(24), easyGpio(25), easyGpio(26), easyGpio(27)]
 
 		for sel in self.mux:
@@ -24,9 +26,10 @@ class SensorServer(Thread):
 		self.A0 = ADC(0)
 		self.A1 = ADC(1)	
 
+	#Set sensor's output data
                 self.sensor_output = {
                         "type" : "real",
-			"timestamp" : 0.,
+						"timestamp" : 0.,
                         "so2" : 0.,
                         "co" : 0.,
                         "no2" : 0.,
@@ -34,7 +37,8 @@ class SensorServer(Thread):
                         "pm25" : 0.,
                         "temp" : 0.
                 }
-		
+
+		# Make Sensors aqi data form
 		self.sensor_aqi = {
 			"type" : "aqi",
 			"timestamp" : 0.,
